@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 概要
 
-## Getting Started
+このリポジトリは、VSCode 拡張 **`nextjs-unused-media-checker`**（Open VSX: `https://open-vsx.org/extension/Takanaz/nextjs-unused-media-checker`）のユースケース/検証用に、
+**Next.js（App Router）で “public 配下のメディア参照パターン” をまとめたサンプル**です。
 
-First, run the development server:
+- 参考: 拡張機能のリポジトリは [Takanaz/nextjs-unused-media-checker](https://github.com/Takanaz/nextjs-unused-media-checker) です（仕様/実装/README はこちら）。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **検証ページ**: `http://localhost:3000/unused-media-checker`
+- **目的**: “使っている（used）” と “使っていない（unused）” を、拡張機能で分かりやすく検知できるようにする
+- **対象の拡張子**: `gif` / `jpg` / `jpeg` / `mp4` / `png` / `svg` / `webp`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 置き方（used / unused の分け方）
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **used（参照される）**: `public/<ext>/` に配置（例: `public/png/used-image.png`）
+- **unused（参照されない）**: `public/<ext>/unused/` に配置（例: `public/png/unused/unused-image.png`）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+検証ページでは、以下のような参照パターンを使っています（素材は未配置でも OK で、404 でも問題ありません）。
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `next/image`
+- `<img src="...">`
+- `<picture><source srcSet="...">`
+- CSS Modules の `url(...)` / `mask-image: url(...)`
+- グローバル CSS の `url(...)`（`@import` 連鎖含む）
+- `<video src="...">`

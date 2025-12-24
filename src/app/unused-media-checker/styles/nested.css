@@ -1,0 +1,6 @@
+@import "./deeper.css";
+
+/* nested.css 自体にも url() を置いておく */
+.used-imported-css-bg {
+  outline: 1px dashed rgba(255, 255, 255, 0.25);
+}

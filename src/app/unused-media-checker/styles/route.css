@@ -1,0 +1,15 @@
+@import "./nested.css";
+
+.used-global-bg {
+  /* query 付き url() でも public の同一ファイルとして解決される */
+  background-image: url("/png/used-global-bg.png?v=1");
+  background-size: cover;
+  background-position: center;
+}
+
+.used-imported-css-bg {
+  background-image: url("/svg/used-imported-css-bg.svg");
+  background-size: 96px 96px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
