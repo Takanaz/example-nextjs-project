@@ -39,8 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# media (this repo is a use-case project; large assets should not be committed)
-public/**/unused/**
-public/**/unused-*
-public/**/used-*
